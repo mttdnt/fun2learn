@@ -1,0 +1,39 @@
+@import './reset.module.scss';
+
+@font-face {
+  font-family: "KaushanScript";
+  src: url("../assets/fonts/KaushanScript-Regular.ttf") format("truetype");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Noto Sans";
+  src: url("../assets/fonts/NotoSans-Regular.ttf") format("truetype");
+  font-display: swap;
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "Noto Sans";
+  src: url("../assets/fonts/NotoSans-Medium.ttf") format("truetype");
+  font-display: swap;
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: "Noto Sans";
+  src: url("../assets/fonts/NotoSans-Bold.ttf") format("truetype");
+  font-display: swap;
+  font-weight: 700;
+}
+
+h1 {
+  font-family: "Noto Sans";
+  font-size: 32px;
+  font-weight: 700;
+}
+
+h2 {
+  font-family: "Noto Sans";
+  font-size: 24px;
+}
