@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "paths": {
+    "/characters": {
+      "name": "/characters",
+      "lambdaFunction": "charactersFunction",
+      "permissions": {
+        "setting": "open"
+      }
+    }
+  }
+}

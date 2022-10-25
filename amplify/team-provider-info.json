@@ -1,0 +1,26 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-fun2learn-dev-225456-authRole",
+      "UnauthRoleArn": "arn:aws:iam::232957753958:role/amplify-fun2learn-dev-225456-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::232957753958:role/amplify-fun2learn-dev-225456-authRole",
+      "Region": "us-east-2",
+      "DeploymentBucketName": "amplify-fun2learn-dev-225456-deployment",
+      "UnauthRoleName": "amplify-fun2learn-dev-225456-unauthRole",
+      "StackName": "amplify-fun2learn-dev-225456",
+      "StackId": "arn:aws:cloudformation:us-east-2:232957753958:stack/amplify-fun2learn-dev-225456/68f6fb60-5410-11ed-a5aa-064ed2d83124",
+      "AmplifyAppId": "d2f9z39vfydu23"
+    },
+    "categories": {
+      "function": {
+        "charactersFunction": {
+          "deploymentBucketName": "amplify-fun2learn-dev-225456-deployment",
+          "s3Key": "amplify-builds/charactersFunction-3738426f2f6536776b75-build.zip"
+        }
+      },
+      "api": {
+        "characters": {}
+      }
+    }
+  }
+}
