@@ -3,7 +3,7 @@
   "paths": {
     "/characters": {
       "name": "/characters",
-      "lambdaFunction": "charactersFunction",
+      "lambdaFunction": "charactersfunction",
       "permissions": {
         "setting": "open"
       }

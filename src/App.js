@@ -1,14 +1,21 @@
-import axios from "axios";
+import { Amplify, API } from 'aws-amplify';
+import awsExports from './aws-exports';
 import { useEffect } from "react";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import Characters from "./Pages/Characters";
 import Sentences from "./Pages/Sentences";
 import styles from './App.module.scss';
 
+Amplify.configure(awsExports);
+
 function App() {
   useEffect(() => {
-    const characters = axios.get("https://fun2learn-b5c44.ue.r.appspot.com/characters");
-    console.log(characters);
+    const asyncFetch = async () => {
+      const response = await API.get('f2lapi', '/characters');
+      console.log(response);
+    }
+
+    asyncFetch();
   }, []);
   return (
     <BrowserRouter>

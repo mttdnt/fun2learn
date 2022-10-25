@@ -47,12 +47,12 @@
         "FunctionName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "charactersFunction",
+            "charactersfunction",
             {
               "Fn::Join": [
                 "",
                 [
-                  "charactersFunction",
+                  "charactersfunction",
                   "-",
                   {
                     "Ref": "env"
@@ -78,7 +78,7 @@
             "Arn"
           ]
         },
-        "Runtime": "python3.8",
+        "Runtime": "nodejs14.x",
         "Layers": [],
         "Timeout": 25
       }
@@ -89,12 +89,12 @@
         "RoleName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "fun2learnLambdaRole6d4c61d8",
+            "fun2learnLambdaRole6678a7a5",
             {
               "Fn::Join": [
                 "",
                 [
-                  "fun2learnLambdaRole6d4c61d8",
+                  "fun2learnLambdaRole6678a7a5",
                   "-",
                   {
                     "Ref": "env"

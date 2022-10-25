@@ -1,6 +1,6 @@
 export type AmplifyDependentResourcesAttributes = {
     "function": {
-        "charactersFunction": {
+        "charactersfunction": {
             "Name": "string",
             "Arn": "string",
             "Region": "string",
@@ -8,7 +8,7 @@ export type AmplifyDependentResourcesAttributes = {
         }
     },
     "api": {
-        "characters": {
+        "f2lapi": {
             "RootUrl": "string",
             "ApiName": "string",
             "ApiId": "string"

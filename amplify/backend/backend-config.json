@@ -1,19 +1,19 @@
 {
   "function": {
-    "charactersFunction": {
+    "charactersfunction": {
       "build": true,
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
     }
   },
   "api": {
-    "characters": {
+    "f2lapi": {
       "service": "API Gateway",
       "providerPlugin": "awscloudformation",
       "dependsOn": [
         {
           "category": "function",
-          "resourceName": "charactersFunction",
+          "resourceName": "charactersfunction",
           "attributes": [
             "Name",
             "Arn"

@@ -13,13 +13,13 @@
     },
     "categories": {
       "function": {
-        "charactersFunction": {
+        "charactersfunction": {
           "deploymentBucketName": "amplify-fun2learn-dev-225456-deployment",
-          "s3Key": "amplify-builds/charactersFunction-3738426f2f6536776b75-build.zip"
+          "s3Key": "amplify-builds/charactersfunction-4844513137543131572b-build.zip"
         }
       },
       "api": {
-        "characters": {}
+        "f2lapi": {}
       }
     }
   }
