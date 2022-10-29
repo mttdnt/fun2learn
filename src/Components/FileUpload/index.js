@@ -1,15 +1,12 @@
-import { useState } from "react";
 import * as Papa from "papaparse";
 
-function FileUpload() {
-  const [characterSet, setCharacterSet] = useState(undefined);
-
+function FileUpload({ setArray, fileKey }) {
   const onCSVParseComplete = (results) => {
-    setCharacterSet(results.data);
+    setArray(results.data);
    }
   
    const onCSVParseError = (error) => {
-    console.alert(error);
+    console.error(error);
    }
 
   const onFileUpload = (e) => {
@@ -18,18 +15,18 @@ function FileUpload() {
       complete: onCSVParseComplete,
       error: onCSVParseError,
     });
-  };
+  }; 
 
   return (
-    <div className="csv-input">
-      <h1>Upload your character sheet</h1>
-      <label htmlFor="csv-input">Import CSV of characters you want to memorize! </label>
+    <div>
+      <label htmlFor="csv-input">Upload CSV </label>
       <input 
         type="file"
         id="csv-input"
         name="Character list"
         accept=".csv"
         onChange={onFileUpload}
+        key={fileKey}
       />
     </div>
   );

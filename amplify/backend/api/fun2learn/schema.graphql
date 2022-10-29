@@ -1,0 +1,12 @@
+type Sentences @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  pinyin: String
+  english: String
+}
+
+type Characters @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  simplified: String
+  pinyin: String
+  english: String
+}

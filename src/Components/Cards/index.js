@@ -39,8 +39,8 @@ function Cards({ cards }) {
             className={styles.speak}
             onClick={(e) => onSpeakChinese(
               randomizedArray
-                ? randomizedArray[index].character || randomizedArray[index].spokenSentence
-                : cards[index].character || cards[index].spokenSentence,
+                ? randomizedArray[index].simplified || randomizedArray[index].spokenSentence
+                : cards[index].simplified || cards[index].spokenSentence,
               e
             )}
           >
@@ -59,11 +59,11 @@ function Cards({ cards }) {
           !cardFlip && (
             <>
               <h2 className={styles.header}>Mandarin (simplified)</h2>
-              { cards[index]?.character && (
-                <p className={styles.character}>{randomizedArray ? randomizedArray[index]?.character : cards[index]?.character}</p>
+              { cards[index]?.simplified && (
+                <p className={styles.simplified}>{randomizedArray ? randomizedArray[index]?.simplified : cards[index]?.simplified}</p>
               )}
               { cards[index]?.sentence && (
-                <p className={styles.character}>{randomizedArray ? randomizedArray[index]?.sentence : cards[index]?.sentence}</p>
+                <p className={styles.simplified}>{randomizedArray ? randomizedArray[index]?.sentence : cards[index]?.sentence}</p>
               )}
             </>
           )

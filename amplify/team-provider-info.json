@@ -12,14 +12,15 @@
       "AmplifyAppId": "d2f9z39vfydu23"
     },
     "categories": {
-      "function": {
-        "charactersfunction": {
-          "deploymentBucketName": "amplify-fun2learn-dev-225456-deployment",
-          "s3Key": "amplify-builds/charactersfunction-4844513137543131572b-build.zip"
-        }
-      },
       "api": {
-        "f2lapi": {}
+        "fun2learn": {},
+        "fun2learnrest": {}
+      },
+      "function": {
+        "SentenceFunction": {
+          "deploymentBucketName": "amplify-fun2learn-dev-225456-deployment",
+          "s3Key": "amplify-builds/SentenceFunction-6f5a6b5959416f6c6369-build.zip"
+        }
       }
     }
   }

@@ -1,6 +1,6 @@
 export type AmplifyDependentResourcesAttributes = {
     "function": {
-        "charactersfunction": {
+        "SentenceFunction": {
             "Name": "string",
             "Arn": "string",
             "Region": "string",
@@ -8,7 +8,12 @@ export type AmplifyDependentResourcesAttributes = {
         }
     },
     "api": {
-        "f2lapi": {
+        "fun2learn": {
+            "GraphQLAPIKeyOutput": "string",
+            "GraphQLAPIIdOutput": "string",
+            "GraphQLAPIEndpointOutput": "string"
+        },
+        "fun2learnrest": {
             "RootUrl": "string",
             "ApiName": "string",
             "ApiId": "string"

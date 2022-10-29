@@ -1,22 +1,14 @@
-import { Amplify, API } from 'aws-amplify';
+import { Amplify } from 'aws-amplify';
 import awsExports from './aws-exports';
-import { useEffect } from "react";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import Characters from "./Pages/Characters";
 import Sentences from "./Pages/Sentences";
+import Add from "./Pages/Add";
 import styles from './App.module.scss';
 
 Amplify.configure(awsExports);
 
 function App() {
-  useEffect(() => {
-    const asyncFetch = async () => {
-      const response = await API.get('f2lapi', '/characters');
-      console.log(response);
-    }
-
-    asyncFetch();
-  }, []);
   return (
     <BrowserRouter>
       <div className={styles.app}>
@@ -25,12 +17,14 @@ function App() {
           <div className={styles.linkContainer}>
             <Link className={styles.link} to="/">Characters</Link>
             <Link className={styles.link} to="/sentences">Sentences</Link>
+            <Link className={styles.link} to="/add">Add</Link>
           </div>
         </header>
         <main className={styles.main}>
           <Routes>
             <Route path="/" element={<Characters />} />
             <Route path="/sentences" element={<Sentences />} />
+            <Route path="/add" element={<Add />} />
           </Routes>
         </main>
       </div>

@@ -15,6 +15,18 @@
     },
     "s3Key": {
       "Type": "String"
+    },
+    "apifun2learnGraphQLAPIIdOutput": {
+      "Type": "String",
+      "Default": "apifun2learnGraphQLAPIIdOutput"
+    },
+    "apifun2learnGraphQLAPIEndpointOutput": {
+      "Type": "String",
+      "Default": "apifun2learnGraphQLAPIEndpointOutput"
+    },
+    "apifun2learnGraphQLAPIKeyOutput": {
+      "Type": "String",
+      "Default": "apifun2learnGraphQLAPIKeyOutput"
     }
   },
   "Conditions": {
@@ -47,12 +59,12 @@
         "FunctionName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "charactersfunction",
+            "SentenceFunction",
             {
               "Fn::Join": [
                 "",
                 [
-                  "charactersfunction",
+                  "SentenceFunction",
                   "-",
                   {
                     "Ref": "env"
@@ -69,6 +81,15 @@
             },
             "REGION": {
               "Ref": "AWS::Region"
+            },
+            "API_FUN2LEARN_GRAPHQLAPIIDOUTPUT": {
+              "Ref": "apifun2learnGraphQLAPIIdOutput"
+            },
+            "API_FUN2LEARN_GRAPHQLAPIENDPOINTOUTPUT": {
+              "Ref": "apifun2learnGraphQLAPIEndpointOutput"
+            },
+            "API_FUN2LEARN_GRAPHQLAPIKEYOUTPUT": {
+              "Ref": "apifun2learnGraphQLAPIKeyOutput"
             }
           }
         },
@@ -89,12 +110,12 @@
         "RoleName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "fun2learnLambdaRole6678a7a5",
+            "fun2learnLambdaRole49c0b0e2",
             {
               "Fn::Join": [
                 "",
                 [
-                  "fun2learnLambdaRole6678a7a5",
+                  "fun2learnLambdaRole49c0b0e2",
                   "-",
                   {
                     "Ref": "env"
@@ -160,6 +181,53 @@
                   }
                 ]
               }
+            }
+          ]
+        }
+      }
+    },
+    "AmplifyResourcesPolicy": {
+      "DependsOn": [
+        "LambdaExecutionRole"
+      ],
+      "Type": "AWS::IAM::Policy",
+      "Properties": {
+        "PolicyName": "amplify-lambda-execution-policy",
+        "Roles": [
+          {
+            "Ref": "LambdaExecutionRole"
+          }
+        ],
+        "PolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Action": [
+                "appsync:GraphQL"
+              ],
+              "Resource": [
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:aws:appsync:",
+                      {
+                        "Ref": "AWS::Region"
+                      },
+                      ":",
+                      {
+                        "Ref": "AWS::AccountId"
+                      },
+                      ":apis/",
+                      {
+                        "Ref": "apifun2learnGraphQLAPIIdOutput"
+                      },
+                      "/types/Query/*"
+                    ]
+                  ]
+                }
+              ]
             }
           ]
         }

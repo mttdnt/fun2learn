@@ -1,0 +1,35 @@
+.header {
+  margin-bottom: 40px;
+}
+
+.tabs {
+  margin-bottom: 20px;
+}
+
+.subheader {
+  margin-bottom: 20px;
+}
+
+.upload {
+  margin-bottom: 20px;
+}
+
+.list {
+  margin-top: 20px;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  border: 1px solid black;
+  padding: 10px;
+}
+
+.delete {
+  display: block;
+}
+
+.csvList {
+  overflow-y: scroll;
+  height: 100%;
+}
