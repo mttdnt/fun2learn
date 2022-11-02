@@ -1,5 +1,7 @@
 import { API, graphqlOperation } from 'aws-amplify';
 import { useEffect, useState } from "react";
+import { withAuthenticator } from '@aws-amplify/ui-react';
+import '@aws-amplify/ui-react/styles.css';
 import FileUpload from '../../Components/FileUpload';
 import Modal from '../../Components/Modal';
 import { listCharacters, listSentences } from "../../graphql/queries";
@@ -181,4 +183,4 @@ function Add() {
   );
 }
 
-export default Add;
+export default withAuthenticator(Add);

@@ -21,6 +21,9 @@
           "deploymentBucketName": "amplify-fun2learn-dev-225456-deployment",
           "s3Key": "amplify-builds/SentenceFunction-6f5a6b5959416f6c6369-build.zip"
         }
+      },
+      "auth": {
+        "fun2learnbb665c01": {}
       }
     }
   }
