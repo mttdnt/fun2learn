@@ -1,88 +1,94 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const createSentences = /* GraphQL */ `
-  mutation CreateSentences(
-    $input: CreateSentencesInput!
-    $condition: ModelSentencesConditionInput
+export const createCard = /* GraphQL */ `
+  mutation CreateCard(
+    $input: CreateCardInput!
+    $condition: ModelCardConditionInput
   ) {
-    createSentences(input: $input, condition: $condition) {
+    createCard(input: $input, condition: $condition) {
       id
-      pinyin
-      english
+      front
+      back
+      listId
       createdAt
       updatedAt
     }
   }
 `;
-export const updateSentences = /* GraphQL */ `
-  mutation UpdateSentences(
-    $input: UpdateSentencesInput!
-    $condition: ModelSentencesConditionInput
+export const updateCard = /* GraphQL */ `
+  mutation UpdateCard(
+    $input: UpdateCardInput!
+    $condition: ModelCardConditionInput
   ) {
-    updateSentences(input: $input, condition: $condition) {
+    updateCard(input: $input, condition: $condition) {
       id
-      pinyin
-      english
+      front
+      back
+      listId
       createdAt
       updatedAt
     }
   }
 `;
-export const deleteSentences = /* GraphQL */ `
-  mutation DeleteSentences(
-    $input: DeleteSentencesInput!
-    $condition: ModelSentencesConditionInput
+export const deleteCard = /* GraphQL */ `
+  mutation DeleteCard(
+    $input: DeleteCardInput!
+    $condition: ModelCardConditionInput
   ) {
-    deleteSentences(input: $input, condition: $condition) {
+    deleteCard(input: $input, condition: $condition) {
       id
-      pinyin
-      english
+      front
+      back
+      listId
       createdAt
       updatedAt
     }
   }
 `;
-export const createCharacters = /* GraphQL */ `
-  mutation CreateCharacters(
-    $input: CreateCharactersInput!
-    $condition: ModelCharactersConditionInput
+export const createList = /* GraphQL */ `
+  mutation CreateList(
+    $input: CreateListInput!
+    $condition: ModelListConditionInput
   ) {
-    createCharacters(input: $input, condition: $condition) {
+    createList(input: $input, condition: $condition) {
       id
-      simplified
-      pinyin
-      english
+      name
+      cards {
+        nextToken
+      }
       createdAt
       updatedAt
     }
   }
 `;
-export const updateCharacters = /* GraphQL */ `
-  mutation UpdateCharacters(
-    $input: UpdateCharactersInput!
-    $condition: ModelCharactersConditionInput
+export const updateList = /* GraphQL */ `
+  mutation UpdateList(
+    $input: UpdateListInput!
+    $condition: ModelListConditionInput
   ) {
-    updateCharacters(input: $input, condition: $condition) {
+    updateList(input: $input, condition: $condition) {
       id
-      simplified
-      pinyin
-      english
+      name
+      cards {
+        nextToken
+      }
       createdAt
       updatedAt
     }
   }
 `;
-export const deleteCharacters = /* GraphQL */ `
-  mutation DeleteCharacters(
-    $input: DeleteCharactersInput!
-    $condition: ModelCharactersConditionInput
+export const deleteList = /* GraphQL */ `
+  mutation DeleteList(
+    $input: DeleteListInput!
+    $condition: ModelListConditionInput
   ) {
-    deleteCharacters(input: $input, condition: $condition) {
+    deleteList(input: $input, condition: $condition) {
       id
-      simplified
-      pinyin
-      english
+      name
+      cards {
+        nextToken
+      }
       createdAt
       updatedAt
     }

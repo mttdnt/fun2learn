@@ -1,7 +1,7 @@
 export const schema = {
     "models": {
-        "Sentences": {
-            "name": "Sentences",
+        "Card": {
+            "name": "Card",
             "fields": {
                 "id": {
                     "name": "id",
@@ -10,18 +10,25 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
-                "pinyin": {
-                    "name": "pinyin",
+                "front": {
+                    "name": "front",
                     "isArray": false,
                     "type": "String",
                     "isRequired": false,
                     "attributes": []
                 },
-                "english": {
-                    "name": "english",
+                "back": {
+                    "name": "back",
                     "isArray": false,
                     "type": "String",
                     "isRequired": false,
+                    "attributes": []
+                },
+                "listId": {
+                    "name": "listId",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
                     "attributes": []
                 },
                 "createdAt": {
@@ -42,11 +49,22 @@ export const schema = {
                 }
             },
             "syncable": true,
-            "pluralName": "Sentences",
+            "pluralName": "Cards",
             "attributes": [
                 {
                     "type": "model",
                     "properties": {}
+                },
+                {
+                    "type": "key",
+                    "properties": {
+                        "name": "byList",
+                        "fields": [
+                            "listId",
+                            "front",
+                            "back"
+                        ]
+                    }
                 },
                 {
                     "type": "auth",
@@ -66,8 +84,8 @@ export const schema = {
                 }
             ]
         },
-        "Characters": {
-            "name": "Characters",
+        "List": {
+            "name": "List",
             "fields": {
                 "id": {
                     "name": "id",
@@ -76,26 +94,26 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
-                "simplified": {
-                    "name": "simplified",
+                "name": {
+                    "name": "name",
                     "isArray": false,
                     "type": "String",
                     "isRequired": false,
                     "attributes": []
                 },
-                "pinyin": {
-                    "name": "pinyin",
-                    "isArray": false,
-                    "type": "String",
+                "cards": {
+                    "name": "cards",
+                    "isArray": true,
+                    "type": {
+                        "model": "Card"
+                    },
                     "isRequired": false,
-                    "attributes": []
-                },
-                "english": {
-                    "name": "english",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": []
+                    "attributes": [],
+                    "isArrayNullable": true,
+                    "association": {
+                        "connectionType": "HAS_MANY",
+                        "associatedWith": "listId"
+                    }
                 },
                 "createdAt": {
                     "name": "createdAt",
@@ -115,7 +133,7 @@ export const schema = {
                 }
             },
             "syncable": true,
-            "pluralName": "Characters",
+            "pluralName": "Lists",
             "attributes": [
                 {
                     "type": "model",
@@ -142,6 +160,6 @@ export const schema = {
     },
     "enums": {},
     "nonModels": {},
-    "codegenVersion": "3.2.0",
-    "version": "361c980d829e2a80cd06dfd2438e50e0"
+    "codegenVersion": "3.3.2",
+    "version": "6f3ee8c52273415a0f27fc1a6945c96c"
 };

@@ -1,82 +1,76 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const onCreateSentences = /* GraphQL */ `
-  subscription OnCreateSentences(
-    $filter: ModelSubscriptionSentencesFilterInput
-  ) {
-    onCreateSentences(filter: $filter) {
+export const onCreateCard = /* GraphQL */ `
+  subscription OnCreateCard($filter: ModelSubscriptionCardFilterInput) {
+    onCreateCard(filter: $filter) {
       id
-      pinyin
-      english
+      front
+      back
+      listId
       createdAt
       updatedAt
     }
   }
 `;
-export const onUpdateSentences = /* GraphQL */ `
-  subscription OnUpdateSentences(
-    $filter: ModelSubscriptionSentencesFilterInput
-  ) {
-    onUpdateSentences(filter: $filter) {
+export const onUpdateCard = /* GraphQL */ `
+  subscription OnUpdateCard($filter: ModelSubscriptionCardFilterInput) {
+    onUpdateCard(filter: $filter) {
       id
-      pinyin
-      english
+      front
+      back
+      listId
       createdAt
       updatedAt
     }
   }
 `;
-export const onDeleteSentences = /* GraphQL */ `
-  subscription OnDeleteSentences(
-    $filter: ModelSubscriptionSentencesFilterInput
-  ) {
-    onDeleteSentences(filter: $filter) {
+export const onDeleteCard = /* GraphQL */ `
+  subscription OnDeleteCard($filter: ModelSubscriptionCardFilterInput) {
+    onDeleteCard(filter: $filter) {
       id
-      pinyin
-      english
+      front
+      back
+      listId
       createdAt
       updatedAt
     }
   }
 `;
-export const onCreateCharacters = /* GraphQL */ `
-  subscription OnCreateCharacters(
-    $filter: ModelSubscriptionCharactersFilterInput
-  ) {
-    onCreateCharacters(filter: $filter) {
+export const onCreateList = /* GraphQL */ `
+  subscription OnCreateList($filter: ModelSubscriptionListFilterInput) {
+    onCreateList(filter: $filter) {
       id
-      simplified
-      pinyin
-      english
+      name
+      cards {
+        nextToken
+      }
       createdAt
       updatedAt
     }
   }
 `;
-export const onUpdateCharacters = /* GraphQL */ `
-  subscription OnUpdateCharacters(
-    $filter: ModelSubscriptionCharactersFilterInput
-  ) {
-    onUpdateCharacters(filter: $filter) {
+export const onUpdateList = /* GraphQL */ `
+  subscription OnUpdateList($filter: ModelSubscriptionListFilterInput) {
+    onUpdateList(filter: $filter) {
       id
-      simplified
-      pinyin
-      english
+      name
+      cards {
+        nextToken
+      }
       createdAt
       updatedAt
     }
   }
 `;
-export const onDeleteCharacters = /* GraphQL */ `
-  subscription OnDeleteCharacters(
-    $filter: ModelSubscriptionCharactersFilterInput
-  ) {
-    onDeleteCharacters(filter: $filter) {
+export const onDeleteList = /* GraphQL */ `
+  subscription OnDeleteList($filter: ModelSubscriptionListFilterInput) {
+    onDeleteList(filter: $filter) {
       id
-      simplified
-      pinyin
-      english
+      name
+      cards {
+        nextToken
+      }
       createdAt
       updatedAt
     }

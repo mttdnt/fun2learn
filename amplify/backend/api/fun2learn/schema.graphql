@@ -1,12 +1,12 @@
-type Sentences @model @auth(rules: [{allow: public}]) {
+type Card @model @auth(rules: [{allow: public}]) {
   id: ID!
-  pinyin: String
-  english: String
+  front: String
+  back: String
+  listId: ID! @index(name: "byList", sortKeyFields: ["front", "back"])
 }
 
-type Characters @model @auth(rules: [{allow: public}]) {
+type List @model @auth(rules: [{allow: public}]) {
   id: ID!
-  simplified: String
-  pinyin: String
-  english: String
+  name: String
+  cards: [Card] @hasMany(indexName: "byList", fields: ["id"])
 }

@@ -1,55 +1,57 @@
 import { ModelInit, MutableModel } from "@aws-amplify/datastore";
+// @ts-ignore
+import { LazyLoading, LazyLoadingDisabled, AsyncCollection } from "@aws-amplify/datastore";
 
-type SentencesMetaData = {
+type CardMetaData = {
   readOnlyFields: 'createdAt' | 'updatedAt';
 }
 
-type CharactersMetaData = {
+type ListMetaData = {
   readOnlyFields: 'createdAt' | 'updatedAt';
 }
 
-type EagerSentences = {
+type EagerCard = {
   readonly id: string;
-  readonly pinyin?: string | null;
-  readonly english?: string | null;
+  readonly front?: string | null;
+  readonly back?: string | null;
+  readonly listId: string;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
 
-type LazySentences = {
+type LazyCard = {
   readonly id: string;
-  readonly pinyin?: string | null;
-  readonly english?: string | null;
+  readonly front?: string | null;
+  readonly back?: string | null;
+  readonly listId: string;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
 
-export declare type Sentences = LazyLoading extends LazyLoadingDisabled ? EagerSentences : LazySentences
+export declare type Card = LazyLoading extends LazyLoadingDisabled ? EagerCard : LazyCard
 
-export declare const Sentences: (new (init: ModelInit<Sentences, SentencesMetaData>) => Sentences) & {
-  copyOf(source: Sentences, mutator: (draft: MutableModel<Sentences, SentencesMetaData>) => MutableModel<Sentences, SentencesMetaData> | void): Sentences;
+export declare const Card: (new (init: ModelInit<Card, CardMetaData>) => Card) & {
+  copyOf(source: Card, mutator: (draft: MutableModel<Card, CardMetaData>) => MutableModel<Card, CardMetaData> | void): Card;
 }
 
-type EagerCharacters = {
+type EagerList = {
   readonly id: string;
-  readonly simplified?: string | null;
-  readonly pinyin?: string | null;
-  readonly english?: string | null;
+  readonly name?: string | null;
+  readonly cards?: (Card | null)[] | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
 
-type LazyCharacters = {
+type LazyList = {
   readonly id: string;
-  readonly simplified?: string | null;
-  readonly pinyin?: string | null;
-  readonly english?: string | null;
+  readonly name?: string | null;
+  readonly cards: AsyncCollection<Card>;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
 
-export declare type Characters = LazyLoading extends LazyLoadingDisabled ? EagerCharacters : LazyCharacters
+export declare type List = LazyLoading extends LazyLoadingDisabled ? EagerList : LazyList
 
-export declare const Characters: (new (init: ModelInit<Characters, CharactersMetaData>) => Characters) & {
-  copyOf(source: Characters, mutator: (draft: MutableModel<Characters, CharactersMetaData>) => MutableModel<Characters, CharactersMetaData> | void): Characters;
+export declare const List: (new (init: ModelInit<List, ListMetaData>) => List) & {
+  copyOf(source: List, mutator: (draft: MutableModel<List, ListMetaData>) => MutableModel<List, ListMetaData> | void): List;
 }

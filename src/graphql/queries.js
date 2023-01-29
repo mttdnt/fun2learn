@@ -1,28 +1,30 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const getSentences = /* GraphQL */ `
-  query GetSentences($id: ID!) {
-    getSentences(id: $id) {
+export const getCard = /* GraphQL */ `
+  query GetCard($id: ID!) {
+    getCard(id: $id) {
       id
-      pinyin
-      english
+      front
+      back
+      listId
       createdAt
       updatedAt
     }
   }
 `;
-export const listSentences = /* GraphQL */ `
-  query ListSentences(
-    $filter: ModelSentencesFilterInput
+export const listCards = /* GraphQL */ `
+  query ListCards(
+    $filter: ModelCardFilterInput
     $limit: Int
     $nextToken: String
   ) {
-    listSentences(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    listCards(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
-        pinyin
-        english
+        front
+        back
+        listId
         createdAt
         updatedAt
       }
@@ -30,30 +32,34 @@ export const listSentences = /* GraphQL */ `
     }
   }
 `;
-export const getCharacters = /* GraphQL */ `
-  query GetCharacters($id: ID!) {
-    getCharacters(id: $id) {
+export const getList = /* GraphQL */ `
+  query GetList($id: ID!) {
+    getList(id: $id) {
       id
-      simplified
-      pinyin
-      english
+      name
+      cards {
+        nextToken
+        items {
+          id
+          front
+          back
+        }
+      }
       createdAt
       updatedAt
     }
   }
 `;
-export const listCharacters = /* GraphQL */ `
-  query ListCharacters(
-    $filter: ModelCharactersFilterInput
+export const listLists = /* GraphQL */ `
+  query ListLists(
+    $filter: ModelListFilterInput
     $limit: Int
     $nextToken: String
   ) {
-    listCharacters(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    listLists(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
-        simplified
-        pinyin
-        english
+        name
         createdAt
         updatedAt
       }

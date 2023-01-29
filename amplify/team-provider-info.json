@@ -12,18 +12,11 @@
       "AmplifyAppId": "d2f9z39vfydu23"
     },
     "categories": {
-      "api": {
-        "fun2learn": {},
-        "fun2learnrest": {}
-      },
-      "function": {
-        "SentenceFunction": {
-          "deploymentBucketName": "amplify-fun2learn-dev-225456-deployment",
-          "s3Key": "amplify-builds/SentenceFunction-6f5a6b5959416f6c6369-build.zip"
-        }
-      },
       "auth": {
         "fun2learnbb665c01": {}
+      },
+      "api": {
+        "fun2learn": {}
       }
     }
   }
