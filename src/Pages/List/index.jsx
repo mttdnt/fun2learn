@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
+import { Link as RouterLink, useParams } from "react-router-dom";
 import { API, graphqlOperation } from "aws-amplify";
-import { useParams } from "react-router-dom";
 import { Typography, Container, Button, Paper, Box, Grid } from "@mui/material";
 import { getList } from "../../graphql/queries";
 import Loader from "../../Components/Loader";
@@ -36,15 +36,20 @@ function List() {
 
   return (
     <Container maxWidth="lg">
-      <Typography variant="h1" gutterBottom align="center">
+      <Typography variant="h2" component="h1" gutterBottom align="center" mt={4}>
         {listName}
+        <Button component={RouterLink} to={`/edit/${id}`} variant="text">
+          Edit
+        </Button>
       </Typography>
       {loading && <Loader />}
       {!loading && list.length > 0 && (
         <Box>
           <Paper sx={{ height: "300px", display: "flex" }}>
-            <Button sx={{ flexGrow: 1 }} onClick={() => setFlipped(!flipped)}>
-              {cardVal}
+            <Button
+              sx={{ flexGrow: 1, textTransform: "lowercase" }}
+              onClick={() => setFlipped(!flipped)}>
+              <Typography variant="h2">{cardVal}</Typography>
             </Button>
           </Paper>
           <Grid container spacing={2} mt={2}>

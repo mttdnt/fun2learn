@@ -48,7 +48,7 @@ function AddCSV() {
           )
         );
         await Promise.all(createCards);
-        navigate("/lists");
+        navigate("/");
       } catch (e) {
         console.error(e);
       }
@@ -57,7 +57,7 @@ function AddCSV() {
 
   return (
     <Container maxWidth="lg" sx={{ height: "100%" }}>
-      <Typography variant="h1" gutterBottom align="center">
+      <Typography variant="h2" component="h1" gutterBottom align="center" mt={4}>
         Create list by CSV
       </Typography>
       <Box textAlign="center">

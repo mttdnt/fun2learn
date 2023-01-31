@@ -3,7 +3,6 @@ import { API, graphqlOperation } from "aws-amplify";
 import { useCallback, useEffect, useState } from "react";
 import { Button, Typography, Box, Container, Grid } from "@mui/material";
 import { listLists } from "../../graphql/queries";
-// import { deleteList } from "../../graphql/mutations";
 import Loader from "../../Components/Loader";
 
 function Lists() {
@@ -24,22 +23,6 @@ function Lists() {
     getLists();
   }, [setLists]);
 
-  // const onListDelete = async (id) => {
-  //   try {
-  //     setLoading(true);
-  //     await API.graphql(
-  //       graphqlOperation(deleteList, {
-  //         input: {
-  //           id
-  //         }
-  //       })
-  //     );
-  //     getLists();
-  //   } catch (e) {
-  //     console.error(e);
-  //   }
-  // };
-
   const buildLists = () => {
     return lists.map((item) => (
       <Grid key={item.id} item xs={12} md={6}>
@@ -47,14 +30,12 @@ function Lists() {
           variant="contained"
           component={RouterLink}
           to={`/list/${item.id}`}
-          sx={{ width: "100%" }}>
-          {item.name}
+          sx={{ width: "100%", height: "100px" }}>
+          <Typography variant="body1">{item.name}</Typography>
         </Button>
       </Grid>
     ));
   };
-
-  // <Button onClick={() => onListDelete(item.id)}>Delete</Button>
 
   const listSection = () => {
     return (
@@ -71,7 +52,7 @@ function Lists() {
 
   return (
     <Container maxWidth="lg">
-      <Typography variant="h1" gutterBottom align="center">
+      <Typography variant="h2" component="h1" gutterBottom align="center" mt={4}>
         Your Lists
       </Typography>
       {loading && <Loader />}
