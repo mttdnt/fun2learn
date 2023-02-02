@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { Link as RouterLink, useParams, useNavigate } from "react-router-dom";
 import { API, graphqlOperation } from "aws-amplify";
-import { Typography, Container, Button, Box, List, ListItem, Modal } from "@mui/material";
+import { Typography, Container, Button, Box, List, ListItem, Modal, Divider } from "@mui/material";
 import { getList } from "../../graphql/queries";
 import { deleteList, deleteCard } from "../../graphql/mutations";
 import Loader from "../../Components/Loader";
@@ -105,17 +105,14 @@ function Edit() {
                 />
               </ListItem>
             ))}
-            <ListItem sx={{ display: "block" }}>
-              <Typography variant="h6" component="p" gutterBottom align="center" mt={4}>
-                New Item
-              </Typography>
-              <ListCard
-                onUpdate={() => setLoading(true)}
-                onFinishUpdate={getListData}
-                listId={id}
-              />
-            </ListItem>
           </List>
+          <Divider variant="middle" sx={{ mt: 4, mb: 2 }} />
+          <Box mb={4}>
+            <Typography variant="h6" component="p" gutterBottom align="center">
+              New Item
+            </Typography>
+            <ListCard onUpdate={() => setLoading(true)} onFinishUpdate={getListData} listId={id} />
+          </Box>
         </Box>
       )}
       <Modal

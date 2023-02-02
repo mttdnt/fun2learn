@@ -10,6 +10,7 @@ import Lists from "./Pages/Lists";
 import AddCSV from "./Pages/AddCSV";
 import List from "./Pages/List";
 import Edit from "./Pages/Edit";
+import AddManual from "./Pages/AddManual";
 
 import awsExports from "./aws-exports";
 
@@ -30,6 +31,7 @@ function App() {
             <Route path="/add/csv" element={<AddCSV />} />
             <Route path="/list/:id" element={<List />} />
             <Route path="/edit/:id" element={<Edit />} />
+            <Route path="add/manual" element={<AddManual />} />
           </Routes>
         </Box>
       </ThemeProvider>

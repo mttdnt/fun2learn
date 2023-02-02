@@ -60,40 +60,50 @@ function AddCSV() {
       <Typography variant="h2" component="h1" gutterBottom align="center" mt={4}>
         Create list by CSV
       </Typography>
-      <Box textAlign="center">
-        <FileUpload setList={setGeneratedList} disabled={generatedList.length > 0} />
-      </Box>
       {loading && <Loader />}
-      {!loading && generatedList.length > 0 && (
-        <Box textAlign="center">
-          <Box sx={{ mt: 2, display: "flex", flexDirection: "column", justifyContent: "center" }}>
-            <TextField
-              id="list-name"
-              label="Name"
-              variant="outlined"
-              required
-              fullWidth={false}
-              error={error}
-              onChange={(e) => setListName(e.target.value)}
-            />
-            <Button variant="contained" color="primary" sx={{ mt: 1 }} onClick={() => submitList()}>
-              Create list
-            </Button>
+      {!loading && (
+        <>
+          <Box textAlign="center">
+            <FileUpload setList={setGeneratedList} disabled={generatedList.length > 0} />
           </Box>
-          <List sx={{ textAlign: "center" }}>
-            {generatedList.map((item) => (
-              <Fragment key={`${item[0]}`}>
-                <ListItem>
-                  <ListItemText sx={{ textAlign: "center" }}>
-                    <Box>Front: {item[0]}</Box>
-                    <Box>Back: {item[1]}</Box>
-                  </ListItemText>
-                </ListItem>
-                <Divider />
-              </Fragment>
-            ))}
-          </List>
-        </Box>
+          {generatedList.length > 0 && (
+            <Box textAlign="center">
+              <Box
+                sx={{ mt: 2, display: "flex", flexDirection: "column", justifyContent: "center" }}>
+                <TextField
+                  id="list-name"
+                  label="Name"
+                  variant="outlined"
+                  required
+                  fullWidth={false}
+                  error={error}
+                  value={listName}
+                  onChange={(e) => setListName(e.target.value)}
+                />
+                <Button
+                  variant="contained"
+                  color="primary"
+                  sx={{ mt: 1 }}
+                  onClick={() => submitList()}>
+                  Create list
+                </Button>
+              </Box>
+              <List sx={{ textAlign: "center" }}>
+                {generatedList.map((item) => (
+                  <Fragment key={`${item[0]}`}>
+                    <ListItem>
+                      <ListItemText sx={{ textAlign: "center" }}>
+                        <Box>Front: {item[0]}</Box>
+                        <Box>Back: {item[1]}</Box>
+                      </ListItemText>
+                    </ListItem>
+                    <Divider />
+                  </Fragment>
+                ))}
+              </List>
+            </Box>
+          )}
+        </>
       )}
     </Container>
   );

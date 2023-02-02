@@ -26,7 +26,7 @@ function Add() {
       <Button
         variant="contained"
         component={RouterLink}
-        to="/"
+        to="/add/manual"
         sx={{
           display: "block",
           textAlign: "center",
