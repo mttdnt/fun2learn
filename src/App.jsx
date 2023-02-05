@@ -28,7 +28,6 @@ function App() {
     try {
       const resUser = await Auth.currentAuthenticatedUser();
       setUser(resUser);
-      navigate("/");
     } catch (e) {
       console.error(e);
       navigate("/sign-in");
