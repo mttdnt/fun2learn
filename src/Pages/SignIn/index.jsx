@@ -23,6 +23,7 @@ function SignIn({ getUser, user }) {
 
     if (tempUser && newPassword) {
       try {
+        setLoading(true);
         await Auth.completeNewPassword(tempUser, newPassword);
         setLoading(false);
         getUser();
@@ -37,6 +38,7 @@ function SignIn({ getUser, user }) {
     event.preventDefault();
 
     try {
+      setLoading(true);
       const userRes = await Auth.signIn(email, password);
       if (userRes.challengeName === "NEW_PASSWORD_REQUIRED") {
         setTempUser(userRes);

@@ -1,6 +1,6 @@
 import { useEffect, useState, useCallback } from "react";
 import { Amplify, Auth } from "aws-amplify";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
 import { CssBaseline, Box } from "@mui/material";
 import { createTheme, responsiveFontSizes, ThemeProvider } from "@mui/material/styles";
 import AppBar from "./Components/AppBar";
@@ -22,13 +22,16 @@ function App() {
   let theme = createTheme();
   theme = responsiveFontSizes(theme);
   const [user, setUser] = useState(undefined);
+  const navigate = useNavigate();
 
   const getUser = useCallback(async () => {
     try {
       const resUser = await Auth.currentAuthenticatedUser();
       setUser(resUser);
+      navigate("/");
     } catch (e) {
       console.error(e);
+      navigate("/sign-in");
     }
   }, []);
 
@@ -37,24 +40,30 @@ function App() {
   }, []);
 
   return (
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      {user && <AppBar />}
+      <Box component="main">
+        <Routes>
+          <Route path="/sign-in" element={<SignIn getUser={getUser} user={user} />} />
+          <Route path="/" element={<Lists user={user} />} />
+          <Route path="/add" element={<Add user={user} />} />
+          <Route path="/add/csv" element={<AddCSV user={user} />} />
+          <Route path="/list/:id" element={<List user={user} />} />
+          <Route path="/edit/:id" element={<Edit user={user} />} />
+          <Route path="add/manual" element={<AddManual user={user} />} />
+        </Routes>
+      </Box>
+    </ThemeProvider>
+  );
+}
+
+function WithRouting() {
+  return (
     <BrowserRouter>
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        {user && <AppBar />}
-        <Box component="main">
-          <Routes>
-            <Route path="/sign-in" element={<SignIn getUser={getUser} user={user} />} />
-            <Route path="/" element={<Lists user={user} />} />
-            <Route path="/add" element={<Add user={user} />} />
-            <Route path="/add/csv" element={<AddCSV user={user} />} />
-            <Route path="/list/:id" element={<List user={user} />} />
-            <Route path="/edit/:id" element={<Edit user={user} />} />
-            <Route path="add/manual" element={<AddManual user={user} />} />
-          </Routes>
-        </Box>
-      </ThemeProvider>
+      <App />
     </BrowserRouter>
   );
 }
 
-export default App;
+export default WithRouting;
