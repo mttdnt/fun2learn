@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { API, graphqlOperation } from "aws-amplify";
+import { API } from "aws-amplify";
 import {
   Typography,
   Container,
@@ -39,23 +39,19 @@ function AddManual() {
     } else {
       setLoading(true);
       try {
-        const resList = await API.graphql(
-          graphqlOperation(createList, {
-            input: {
-              name: listName
-            }
-          })
-        );
+        const resList = await API.graphql({
+          query: createList,
+          variables: { input: { name: listName } },
+          authMode: "AMAZON_COGNITO_USER_POOLS"
+        });
         const createCards = list.map((item) =>
-          API.graphql(
-            graphqlOperation(createCard, {
-              input: {
-                front: item.front,
-                back: item.back,
-                listId: resList.data.createList.id
-              }
-            })
-          )
+          API.graphql({
+            query: createCard,
+            variables: {
+              input: { front: item.front, back: item.back, listId: resList.data.createList.id }
+            },
+            authMode: "AMAZON_COGNITO_USER_POOLS"
+          })
         );
         await Promise.all(createCards);
         navigate("/");

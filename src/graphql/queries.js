@@ -10,6 +10,7 @@ export const getCard = /* GraphQL */ `
       listId
       createdAt
       updatedAt
+      owner
     }
   }
 `;
@@ -27,6 +28,7 @@ export const listCards = /* GraphQL */ `
         listId
         createdAt
         updatedAt
+        owner
       }
       nextToken
     }
@@ -39,14 +41,10 @@ export const getList = /* GraphQL */ `
       name
       cards {
         nextToken
-        items {
-          id
-          front
-          back
-        }
       }
       createdAt
       updatedAt
+      owner
     }
   }
 `;
@@ -62,6 +60,7 @@ export const listLists = /* GraphQL */ `
         name
         createdAt
         updatedAt
+        owner
       }
       nextToken
     }

@@ -1,10 +1,10 @@
 {
   "version": "1",
   "cognitoConfig": {
-    "identityPoolName": "fun2learnbb665c01_identitypool_bb665c01",
+    "identityPoolName": "fun2learnf3b1d395_identitypool_f3b1d395",
     "allowUnauthenticatedIdentities": false,
-    "resourceNameTruncated": "fun2lebb665c01",
-    "userPoolName": "fun2learnbb665c01_userpool_bb665c01",
+    "resourceNameTruncated": "fun2lef3b1d395",
+    "userPoolName": "fun2learnf3b1d395_userpool_f3b1d395",
     "autoVerifiedAttributes": [
       "email"
     ],
@@ -31,19 +31,40 @@
     "userpoolClientReadAttributes": [
       "email"
     ],
-    "userpoolClientLambdaRole": "fun2lebb665c01_userpoolclient_lambda_role",
+    "userpoolClientLambdaRole": "fun2lef3b1d395_userpoolclient_lambda_role",
     "userpoolClientSetAttributes": false,
-    "sharedId": "bb665c01",
-    "resourceName": "fun2learnbb665c01",
+    "sharedId": "f3b1d395",
+    "resourceName": "fun2learnf3b1d395",
     "authSelections": "identityPoolAndUserPool",
     "useDefault": "default",
     "usernameAttributes": [
       "email"
     ],
     "triggers": {},
-    "userPoolGroupList": [],
+    "userPoolGroupList": [
+      "admins",
+      "learners"
+    ],
     "serviceName": "Cognito",
     "usernameCaseSensitive": false,
-    "useEnabledMfas": true
+    "useEnabledMfas": true,
+    "authRoleArn": {
+      "Fn::GetAtt": [
+        "AuthRole",
+        "Arn"
+      ]
+    },
+    "unauthRoleArn": {
+      "Fn::GetAtt": [
+        "UnauthRole",
+        "Arn"
+      ]
+    },
+    "breakCircularDependency": true,
+    "dependsOn": [],
+    "parentStack": {
+      "Ref": "AWS::StackId"
+    },
+    "permissions": []
   }
-}  
+} 

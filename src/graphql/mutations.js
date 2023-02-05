@@ -13,6 +13,7 @@ export const createCard = /* GraphQL */ `
       listId
       createdAt
       updatedAt
+      owner
     }
   }
 `;
@@ -28,6 +29,7 @@ export const updateCard = /* GraphQL */ `
       listId
       createdAt
       updatedAt
+      owner
     }
   }
 `;
@@ -43,6 +45,7 @@ export const deleteCard = /* GraphQL */ `
       listId
       createdAt
       updatedAt
+      owner
     }
   }
 `;
@@ -59,6 +62,7 @@ export const createList = /* GraphQL */ `
       }
       createdAt
       updatedAt
+      owner
     }
   }
 `;
@@ -75,6 +79,7 @@ export const updateList = /* GraphQL */ `
       }
       createdAt
       updatedAt
+      owner
     }
   }
 `;
@@ -91,6 +96,7 @@ export const deleteList = /* GraphQL */ `
       }
       createdAt
       updatedAt
+      owner
     }
   }
 `;

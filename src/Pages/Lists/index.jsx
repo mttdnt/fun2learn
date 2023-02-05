@@ -1,5 +1,5 @@
 import { Link as RouterLink } from "react-router-dom";
-import { API, graphqlOperation } from "aws-amplify";
+import { API } from "aws-amplify";
 import { useCallback, useEffect, useState } from "react";
 import { Button, Typography, Box, Container, Grid } from "@mui/material";
 import { listLists } from "../../graphql/queries";
@@ -11,7 +11,10 @@ function Lists() {
 
   const getLists = useCallback(async () => {
     try {
-      const res = await API.graphql(graphqlOperation(listLists));
+      const res = await API.graphql({
+        query: listLists,
+        authMode: "AMAZON_COGNITO_USER_POOLS"
+      });
       setLists(res.data.listLists.items);
       setLoading(false);
     } catch (e) {

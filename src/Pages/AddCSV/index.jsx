@@ -1,5 +1,5 @@
 import { Fragment, useState } from "react";
-import { API, graphqlOperation } from "aws-amplify";
+import { API } from "aws-amplify";
 import Container from "@mui/material/Container";
 import {
   Box,
@@ -29,23 +29,25 @@ function AddCSV() {
     } else {
       setLoading(true);
       try {
-        const list = await API.graphql(
-          graphqlOperation(createList, {
-            input: {
-              name: listName
-            }
-          })
-        );
+        const list = await API.graphql({
+          query: createList,
+          authMode: "AMAZON_COGNITO_USER_POOLS",
+          variables: {
+            input: { name: listName }
+          }
+        });
         const createCards = generatedList.map((item) =>
-          API.graphql(
-            graphqlOperation(createCard, {
+          API.graphql({
+            query: createCard,
+            authMode: "AMAZON_COGNITO_USER_POOLS",
+            variables: {
               input: {
                 front: item[0],
                 back: item[1],
                 listId: list.data.createList.id
               }
-            })
-          )
+            }
+          })
         );
         await Promise.all(createCards);
         navigate("/");

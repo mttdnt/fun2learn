@@ -12,11 +12,12 @@
       "AmplifyAppId": "d2f9z39vfydu23"
     },
     "categories": {
-      "auth": {
-        "fun2learnbb665c01": {}
-      },
       "api": {
         "fun2learn": {}
+      },
+      "auth": {
+        "fun2learnf3b1d395": {},
+        "userPoolGroups": {}
       }
     }
   }

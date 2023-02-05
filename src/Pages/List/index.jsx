@@ -1,8 +1,8 @@
 import { useCallback, useEffect, useState } from "react";
 import { Link as RouterLink, useParams } from "react-router-dom";
-import { API, graphqlOperation } from "aws-amplify";
+import { API } from "aws-amplify";
 import { Typography, Container, Button, Paper, Box, Grid } from "@mui/material";
-import { getList } from "../../graphql/queries";
+import { getList } from "../../custom-graphql/queries";
 import Loader from "../../Components/Loader";
 
 function List() {
@@ -15,11 +15,11 @@ function List() {
 
   const getListData = useCallback(async () => {
     try {
-      const res = await API.graphql(
-        graphqlOperation(getList, {
-          id
-        })
-      );
+      const res = await API.graphql({
+        query: getList,
+        variables: { id },
+        authMode: "AMAZON_COGNITO_USER_POOLS"
+      });
       setList(res.data.getList.cards.items);
       setListName(res.data.getList.name);
       setLoading(false);

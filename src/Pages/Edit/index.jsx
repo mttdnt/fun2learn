@@ -1,8 +1,8 @@
 import { useCallback, useEffect, useState } from "react";
 import { Link as RouterLink, useParams, useNavigate } from "react-router-dom";
-import { API, graphqlOperation } from "aws-amplify";
+import { API } from "aws-amplify";
 import { Typography, Container, Button, Box, List, ListItem, Modal, Divider } from "@mui/material";
-import { getList } from "../../graphql/queries";
+import { getList } from "../../custom-graphql/queries";
 import { deleteList, deleteCard } from "../../graphql/mutations";
 import Loader from "../../Components/Loader";
 import ListCard from "../../Components/ListCard";
@@ -20,11 +20,11 @@ function Edit() {
 
   const getListData = useCallback(async () => {
     try {
-      const res = await API.graphql(
-        graphqlOperation(getList, {
-          id
-        })
-      );
+      const res = await API.graphql({
+        query: getList,
+        variables: { id },
+        authMode: "AMAZON_COGNITO_USER_POOLS"
+      });
       setList(res.data.getList.cards.items);
       setListName(res.data.getList.name);
       setLoading(false);
@@ -43,23 +43,19 @@ function Edit() {
       setLoading(true);
       if (list.length > 0) {
         const promises = list.map((item) =>
-          API.graphql(
-            graphqlOperation(deleteCard, {
-              input: {
-                id: item.id
-              }
-            })
-          )
+          API.graphql({
+            query: deleteCard,
+            authMode: "AMAZON_COGNITO_USER_POOLS",
+            variables: { input: { id: item.id } }
+          })
         );
         await Promise.all(promises);
       }
-      await API.graphql(
-        graphqlOperation(deleteList, {
-          input: {
-            id
-          }
-        })
-      );
+      await API.graphql({
+        query: deleteList,
+        authMode: "AMAZON_COGNITO_USER_POOLS",
+        variables: { input: { id } }
+      });
       navigate(`/`);
     } catch (e) {
       console.error(e);

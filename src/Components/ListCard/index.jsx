@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { API, graphqlOperation } from "aws-amplify";
+import { API } from "aws-amplify";
 import { Button, Box, Grid, Paper, TextField } from "@mui/material";
 import { deleteCard, updateCard, createCard } from "../../graphql/mutations";
 
@@ -20,16 +20,18 @@ function ListCard({ card, onUpdate, onFinishUpdate, listId }) {
   const onSave = async () => {
     try {
       onUpdate(true);
-      await API.graphql(
-        graphqlOperation(saveMutation, {
+      await API.graphql({
+        query: saveMutation,
+        authMode: "AMAZON_COGNITO_USER_POOLS",
+        variables: {
           input: {
             ...(card ? { id: card.id } : {}),
             front,
             back,
             listId
           }
-        })
-      );
+        }
+      });
       onFinishUpdate();
     } catch (e) {
       console.error(e);
@@ -40,13 +42,15 @@ function ListCard({ card, onUpdate, onFinishUpdate, listId }) {
   const onDelete = async () => {
     try {
       onUpdate(true);
-      await API.graphql(
-        graphqlOperation(deleteCard, {
+      await API.graphql({
+        query: deleteCard,
+        authMode: "AMAZON_COGNITO_USER_POOLS",
+        variables: {
           input: {
             id: card.id
           }
-        })
-      );
+        }
+      });
       onFinishUpdate();
     } catch (e) {
       console.error(e);
