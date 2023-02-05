@@ -95,7 +95,7 @@ function AddManual() {
                       <ListItemText>{item.front}</ListItemText>
                     </Grid>
                     <Grid item xs={12} md={6} padding={2}>
-                      <ListItemText>{item.front}</ListItemText>
+                      <ListItemText>{item.back}</ListItemText>
                     </Grid>
                   </Grid>
                   <Button
