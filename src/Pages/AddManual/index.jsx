@@ -33,6 +33,12 @@ function AddManual() {
     setBack("");
   };
 
+  const deleteCardFromList = (index) => {
+    const newList = list.map((item) => ({ front: item.front, back: item.back }));
+    newList.splice(index, 1);
+    setList(newList);
+  };
+
   const onSaveList = async () => {
     if (listName.length <= 0) {
       setError(true);
@@ -87,7 +93,7 @@ function AddManual() {
             onChange={(e) => setListName(e.target.value)}
           />
           <List>
-            {list.map((item) => (
+            {list.map((item, index) => (
               <ListItem sx={{ display: "block" }} key={item.front}>
                 <Paper sx={{ width: "100%", position: "relative" }}>
                   <Grid container>
@@ -99,6 +105,7 @@ function AddManual() {
                     </Grid>
                   </Grid>
                   <Button
+                    onClick={() => deleteCardFromList(index)}
                     variant="contained"
                     sx={{ position: "absolute", top: 0, right: 0 }}
                     color="error"

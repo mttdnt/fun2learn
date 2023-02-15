@@ -48,11 +48,13 @@ function List() {
           </Typography>
           {list.length > 0 && (
             <Box>
-              <Paper sx={{ height: "300px", display: "flex" }}>
+              <Paper sx={{ minHeight: "300px", height: "auto", display: "flex" }}>
                 <Button
                   sx={{ flexGrow: 1, textTransform: "lowercase" }}
                   onClick={() => setFlipped(!flipped)}>
-                  <Typography variant="h2">{cardVal}</Typography>
+                  <Typography variant="h5" component="span">
+                    {cardVal}
+                  </Typography>
                 </Button>
               </Paper>
               <Grid container spacing={2} mt={2}>

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { Link as RouterLink, useLocation } from "react-router-dom";
+import { Auth } from "aws-amplify";
+import { Link as RouterLink, useLocation, useNavigate } from "react-router-dom";
 import Button from "@mui/material/Button";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
@@ -19,9 +20,10 @@ const pages = [
 
 const drawerWidth = 240;
 
-function SiteAppBar() {
+function SiteAppBar({ setUser }) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     setMobileOpen(false);
@@ -32,6 +34,16 @@ function SiteAppBar() {
       return;
     }
     setMobileOpen((prevState) => !prevState);
+  };
+
+  const signOut = async () => {
+    try {
+      await Auth.signOut();
+      setUser(undefined);
+      navigate("/sign-in");
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const container = window.document.body;
@@ -46,6 +58,11 @@ function SiteAppBar() {
             </Button>
           </ListItem>
         ))}
+        <ListItem disablePadding>
+          <Button onClick={signOut} sx={{ width: "100%" }}>
+            Sign out
+          </Button>
+        </ListItem>
       </List>
     </Box>
   );
@@ -75,6 +92,11 @@ function SiteAppBar() {
                 {page.label}
               </Button>
             ))}
+            <Button
+              sx={{ my: 2, color: "white", display: "block", textAlign: "center" }}
+              onClick={signOut}>
+              Sign Out
+            </Button>
           </Box>
         </Toolbar>
       </AppBar>

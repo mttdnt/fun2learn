@@ -1,7 +1,7 @@
 import { Auth } from "aws-amplify";
 import { useEffect, useState } from "react";
 import { Typography, Container, Button, TextField, Box } from "@mui/material";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link as RouterLink } from "react-router-dom";
 import Loader from "../../Components/Loader";
 
 function SignIn({ getUser, user }) {
@@ -66,7 +66,7 @@ function SignIn({ getUser, user }) {
       </Typography>
       <form onSubmit={(e) => createNew(e)}>
         <TextField
-          sx={{ display: "block" }}
+          sx={{ display: "block", mb: 1 }}
           required
           placeholder="new password"
           type="password"
@@ -88,14 +88,14 @@ function SignIn({ getUser, user }) {
     <Box sx={{ display: "flex", alignItems: "center", flexDirection: "column" }}>
       <form onSubmit={(e) => signIn(e)}>
         <TextField
-          sx={{ display: "block" }}
+          sx={{ display: "block", mb: 1 }}
           required
           placeholder="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
         <TextField
-          sx={{ display: "block" }}
+          sx={{ display: "block", mb: 2 }}
           required
           placeholder="password"
           type="password"
@@ -104,12 +104,15 @@ function SignIn({ getUser, user }) {
         />
         <Button
           variant="contained"
-          sx={{ display: "block", margin: "0 auto" }}
+          sx={{ display: "block", margin: "0 auto", mb: 2 }}
           disabled={!email || !password}
           type="submit">
           Sign in
         </Button>
       </form>
+      <Button component={RouterLink} to="/forgot-password" sx={{ display: "block" }}>
+        Forgot Password
+      </Button>
     </Box>
   );
 

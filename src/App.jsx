@@ -1,6 +1,6 @@
 import { useEffect, useState, useCallback } from "react";
 import { Amplify, Auth } from "aws-amplify";
-import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useNavigate, useLocation } from "react-router-dom";
 import { CssBaseline, Box } from "@mui/material";
 import { createTheme, responsiveFontSizes, ThemeProvider } from "@mui/material/styles";
 import AppBar from "./Components/AppBar";
@@ -13,6 +13,7 @@ import List from "./Pages/List";
 import Edit from "./Pages/Edit";
 import AddManual from "./Pages/AddManual";
 import SignIn from "./Pages/SignIn";
+import ForgotPassword from "./Pages/ForgotPassword";
 
 import awsExports from "./aws-exports";
 
@@ -23,6 +24,7 @@ function App() {
   theme = responsiveFontSizes(theme);
   const [user, setUser] = useState(undefined);
   const navigate = useNavigate();
+  const location = useLocation();
 
   const getUser = useCallback(async () => {
     try {
@@ -30,7 +32,8 @@ function App() {
       setUser(resUser);
     } catch (e) {
       console.error(e);
-      navigate("/sign-in");
+      if (!location.pathname.includes("sign-in") && !location.pathname.includes("forgot-password"))
+        navigate("/sign-in");
     }
   }, []);
 
@@ -41,10 +44,11 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      {user && <AppBar />}
+      {user && <AppBar setUser={setUser} />}
       <Box component="main">
         <Routes>
           <Route path="/sign-in" element={<SignIn getUser={getUser} user={user} />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/" element={<Lists user={user} />} />
           <Route path="/add" element={<Add user={user} />} />
           <Route path="/add/csv" element={<AddCSV user={user} />} />
