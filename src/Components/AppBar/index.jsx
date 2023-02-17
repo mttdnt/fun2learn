@@ -80,7 +80,7 @@ function SiteAppBar({ setUser }) {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Flearn
+            Qwizard
           </Typography>
           <Box component="nav" sx={{ display: { xs: "none", sm: "flex" } }}>
             {pages.map((page) => (
