@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { API } from "aws-amplify";
-import { GraphQLQuery } from '@aws-amplify/api';
+import { GraphQLQuery } from "@aws-amplify/api";
 import {
   Typography,
   Container,
@@ -22,7 +22,7 @@ function AddManual() {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [listName, setListName] = useState("");
-  const [list, setList] = useState<Array<{ front: string, back: string}> | []>([]);
+  const [list, setList] = useState<Array<{ front: string; back: string }> | []>([]);
   const [error, setError] = useState(false);
   const [front, setFront] = useState("");
   const [back, setBack] = useState("");

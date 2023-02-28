@@ -7,7 +7,7 @@ import Loader from "../../Components/Loader";
 interface ISignInProps {
   getUser: () => Promise<void>;
   user: any;
-};
+}
 
 function SignIn({ getUser, user }: ISignInProps) {
   const [loading, setLoading] = useState(false);

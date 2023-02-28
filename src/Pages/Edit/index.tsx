@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import { Link as RouterLink, useParams, useNavigate } from "react-router-dom";
-import { GraphQLQuery } from '@aws-amplify/api';
+import { GraphQLQuery } from "@aws-amplify/api";
 import { API } from "aws-amplify";
 import { Typography, Container, Button, Box, List, ListItem, Modal, Divider } from "@mui/material";
 import { GetListQuery } from "../../custom-graphql/API";
@@ -95,15 +95,16 @@ function Edit() {
             </Button>
           </Box>
           <List>
-            {list && list.map((item) => (
-              <ListItem key={item?.id}>
-                <ListCard
-                  card={item}
-                  onUpdate={() => setLoading(true)}
-                  onFinishUpdate={getListData}
-                />
-              </ListItem>
-            ))}
+            {list &&
+              list.map((item) => (
+                <ListItem key={item?.id}>
+                  <ListCard
+                    card={item}
+                    onUpdate={() => setLoading(true)}
+                    onFinishUpdate={getListData}
+                  />
+                </ListItem>
+              ))}
           </List>
           <Divider variant="middle" sx={{ mt: 4, mb: 2 }} />
           <Box mb={4}>

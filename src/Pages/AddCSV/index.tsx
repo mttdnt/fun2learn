@@ -1,6 +1,6 @@
 import { Fragment, useState } from "react";
 import { API } from "aws-amplify";
-import { GraphQLQuery } from '@aws-amplify/api';
+import { GraphQLQuery } from "@aws-amplify/api";
 import Container from "@mui/material/Container";
 import {
   Box,

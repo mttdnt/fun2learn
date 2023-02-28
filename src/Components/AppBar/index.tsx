@@ -14,8 +14,8 @@ import Drawer from "@mui/material/Drawer";
 import { Container } from "@mui/material";
 
 interface ISiteAppBarProps {
-  setUser:  React.Dispatch<any>
-};
+  setUser: React.Dispatch<any>;
+}
 
 const pages = [
   { label: "Lists", url: "/" },
@@ -43,7 +43,7 @@ function SiteAppBar({ setUser }: ISiteAppBarProps) {
     }
 
     setMobileOpen((prevState) => !prevState);
-  }
+  };
 
   const signOut = async () => {
     try {
@@ -58,7 +58,11 @@ function SiteAppBar({ setUser }: ISiteAppBarProps) {
   const container = window.document.body;
 
   const list = () => (
-    <Box sx={{ width: 250 }} role="presentation" onClick={handleDrawerToggle()} onKeyUp={handleDrawerToggleKeyboard()}>
+    <Box
+      sx={{ width: 250 }}
+      role="presentation"
+      onClick={handleDrawerToggle()}
+      onKeyUp={handleDrawerToggleKeyboard()}>
       <List>
         {pages.map((page) => (
           <ListItem key={page.label} disablePadding>

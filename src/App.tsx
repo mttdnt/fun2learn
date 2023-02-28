@@ -51,7 +51,7 @@ function App() {
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/" element={<Lists />} />
           <Route path="/add" element={<Add />} />
-          <Route path="/add/csv" element={<AddCSV  />} />
+          <Route path="/add/csv" element={<AddCSV />} />
           <Route path="/list/:id" element={<List />} />
           <Route path="/edit/:id" element={<Edit />} />
           <Route path="add/manual" element={<AddManual />} />

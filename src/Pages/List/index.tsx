@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { Link as RouterLink, useParams } from "react-router-dom";
 import { API } from "aws-amplify";
-import { GraphQLQuery } from '@aws-amplify/api';
+import { GraphQLQuery } from "@aws-amplify/api";
 import { Typography, Container, Button, Paper, Box, Grid } from "@mui/material";
 import { getList } from "../../custom-graphql/queries";
 import Loader from "../../Components/Loader";
