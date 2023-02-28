@@ -13,6 +13,10 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Drawer from "@mui/material/Drawer";
 import { Container } from "@mui/material";
 
+interface ISiteAppBarProps {
+  setUser:  React.Dispatch<any>
+};
+
 const pages = [
   { label: "Lists", url: "/" },
   { label: "Add", url: "/add" }
@@ -20,7 +24,7 @@ const pages = [
 
 const drawerWidth = 240;
 
-function SiteAppBar({ setUser }) {
+function SiteAppBar({ setUser }: ISiteAppBarProps) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
@@ -29,12 +33,17 @@ function SiteAppBar({ setUser }) {
     setMobileOpen(false);
   }, [location]);
 
-  const handleDrawerToggle = () => (event) => {
+  const handleDrawerToggle = () => () => {
+    setMobileOpen((prevState) => !prevState);
+  };
+
+  const handleDrawerToggleKeyboard = () => (event: any) => {
     if (event && event.type === "keydown" && (event.key === "Tab" || event.key === "Shift")) {
       return;
     }
+
     setMobileOpen((prevState) => !prevState);
-  };
+  }
 
   const signOut = async () => {
     try {
@@ -49,7 +58,7 @@ function SiteAppBar({ setUser }) {
   const container = window.document.body;
 
   const list = () => (
-    <Box sx={{ width: 250 }} role="presentation" onClick={handleDrawerToggle()}>
+    <Box sx={{ width: 250 }} role="presentation" onClick={handleDrawerToggle()} onKeyUp={handleDrawerToggleKeyboard()}>
       <List>
         {pages.map((page) => (
           <ListItem key={page.label} disablePadding>
@@ -76,6 +85,7 @@ function SiteAppBar({ setUser }) {
             aria-label="open drawer"
             edge="start"
             onClick={handleDrawerToggle()}
+            onKeyUp={handleDrawerToggleKeyboard()}
             sx={{ mr: 2, display: { sm: "none" } }}>
             <MenuIcon />
           </IconButton>

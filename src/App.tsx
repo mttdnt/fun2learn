@@ -22,7 +22,7 @@ Amplify.configure(awsExports);
 function App() {
   let theme = createTheme();
   theme = responsiveFontSizes(theme);
-  const [user, setUser] = useState(undefined);
+  const [user, setUser] = useState<any | undefined>(undefined);
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -49,12 +49,12 @@ function App() {
         <Routes>
           <Route path="/sign-in" element={<SignIn getUser={getUser} user={user} />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
-          <Route path="/" element={<Lists user={user} />} />
-          <Route path="/add" element={<Add user={user} />} />
-          <Route path="/add/csv" element={<AddCSV user={user} />} />
-          <Route path="/list/:id" element={<List user={user} />} />
-          <Route path="/edit/:id" element={<Edit user={user} />} />
-          <Route path="add/manual" element={<AddManual user={user} />} />
+          <Route path="/" element={<Lists />} />
+          <Route path="/add" element={<Add />} />
+          <Route path="/add/csv" element={<AddCSV  />} />
+          <Route path="/list/:id" element={<List />} />
+          <Route path="/edit/:id" element={<Edit />} />
+          <Route path="add/manual" element={<AddManual />} />
         </Routes>
       </Box>
     </ThemeProvider>

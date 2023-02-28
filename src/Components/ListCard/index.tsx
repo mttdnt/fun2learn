@@ -2,8 +2,16 @@ import { useState } from "react";
 import { API } from "aws-amplify";
 import { Button, Box, Grid, Paper, TextField } from "@mui/material";
 import { deleteCard, updateCard, createCard } from "../../graphql/mutations";
+import { Card } from "../../types/amplify-types";
 
-function ListCard({ card, onUpdate, onFinishUpdate, listId }) {
+interface IListCardProps {
+  card?: Card | null;
+  onUpdate: React.Dispatch<React.SetStateAction<boolean>>;
+  onFinishUpdate: () => Promise<void>;
+  listId?: string;
+};
+
+function ListCard({ card, onUpdate, onFinishUpdate, listId }: IListCardProps) {
   const [front, setFront] = useState(card ? card.front : "");
   const [back, setBack] = useState(card ? card.back : "");
 
@@ -47,7 +55,7 @@ function ListCard({ card, onUpdate, onFinishUpdate, listId }) {
         authMode: "AMAZON_COGNITO_USER_POOLS",
         variables: {
           input: {
-            id: card.id
+            id: card?.id
           }
         }
       });

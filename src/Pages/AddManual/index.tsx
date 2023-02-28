@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { API } from "aws-amplify";
+import { GraphQLQuery } from '@aws-amplify/api';
 import {
   Typography,
   Container,
@@ -14,13 +15,14 @@ import {
   ListItemText
 } from "@mui/material";
 import Loader from "../../Components/Loader";
+import { CreateListMutation } from "../../API";
 import { createList, createCard } from "../../graphql/mutations";
 
 function AddManual() {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [listName, setListName] = useState("");
-  const [list, setList] = useState([]);
+  const [list, setList] = useState<Array<{ front: string, back: string}> | []>([]);
   const [error, setError] = useState(false);
   const [front, setFront] = useState("");
   const [back, setBack] = useState("");
@@ -33,7 +35,7 @@ function AddManual() {
     setBack("");
   };
 
-  const deleteCardFromList = (index) => {
+  const deleteCardFromList = (index: number) => {
     const newList = list.map((item) => ({ front: item.front, back: item.back }));
     newList.splice(index, 1);
     setList(newList);
@@ -45,7 +47,7 @@ function AddManual() {
     } else {
       setLoading(true);
       try {
-        const resList = await API.graphql({
+        const resList = await API.graphql<GraphQLQuery<CreateListMutation>>({
           query: createList,
           variables: { input: { name: listName } },
           authMode: "AMAZON_COGNITO_USER_POOLS"
@@ -54,7 +56,7 @@ function AddManual() {
           API.graphql({
             query: createCard,
             variables: {
-              input: { front: item.front, back: item.back, listId: resList.data.createList.id }
+              input: { front: item.front, back: item.back, listId: resList?.data?.createList?.id }
             },
             authMode: "AMAZON_COGNITO_USER_POOLS"
           })

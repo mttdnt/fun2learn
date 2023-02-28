@@ -10,12 +10,8 @@ export const getList = /* GraphQL */ `
           front
           back
           listId
-          createdAt
-          updatedAt
         }
       }
-      createdAt
-      updatedAt
     }
   }
 `;

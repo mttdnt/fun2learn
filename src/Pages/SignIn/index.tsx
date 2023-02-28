@@ -4,7 +4,12 @@ import { Typography, Container, Button, TextField, Box } from "@mui/material";
 import { useNavigate, Link as RouterLink } from "react-router-dom";
 import Loader from "../../Components/Loader";
 
-function SignIn({ getUser, user }) {
+interface ISignInProps {
+  getUser: () => Promise<void>;
+  user: any;
+};
+
+function SignIn({ getUser, user }: ISignInProps) {
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -18,7 +23,7 @@ function SignIn({ getUser, user }) {
     }
   }, [user]);
 
-  const createNew = async (event) => {
+  const createNew = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     if (tempUser && newPassword) {
@@ -34,7 +39,7 @@ function SignIn({ getUser, user }) {
     }
   };
 
-  const signIn = async (event) => {
+  const signIn = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     try {

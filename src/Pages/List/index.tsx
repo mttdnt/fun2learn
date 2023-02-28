@@ -1,27 +1,30 @@
 import { useCallback, useEffect, useState } from "react";
 import { Link as RouterLink, useParams } from "react-router-dom";
 import { API } from "aws-amplify";
+import { GraphQLQuery } from '@aws-amplify/api';
 import { Typography, Container, Button, Paper, Box, Grid } from "@mui/material";
 import { getList } from "../../custom-graphql/queries";
 import Loader from "../../Components/Loader";
+import { GetListQuery } from "../../custom-graphql/API";
+import { Card } from "../../types/amplify-types";
 
 function List() {
   const { id } = useParams();
   const [loading, setLoading] = useState(true);
-  const [list, setList] = useState(undefined);
-  const [listName, setListName] = useState(undefined);
+  const [list, setList] = useState<Array<Card | null> | undefined>(undefined);
+  const [listName, setListName] = useState<string | null | undefined>(undefined);
   const [cardIndex, setCardIndex] = useState(0);
   const [flipped, setFlipped] = useState(false);
 
   const getListData = useCallback(async () => {
     try {
-      const res = await API.graphql({
+      const res = await API.graphql<GraphQLQuery<GetListQuery>>({
         query: getList,
         variables: { id },
         authMode: "AMAZON_COGNITO_USER_POOLS"
       });
-      setList(res.data.getList.cards.items);
-      setListName(res.data.getList.name);
+      setList(res?.data?.getList?.cards?.items);
+      setListName(res?.data?.getList?.name);
       setLoading(false);
     } catch (e) {
       console.error(e);
@@ -33,7 +36,7 @@ function List() {
   }, []);
 
   const cardVal =
-    list && list.length > 0 && (!flipped ? list[cardIndex].front : list[cardIndex].back);
+    list && list.length > 0 && (!flipped ? list[cardIndex]?.front : list[cardIndex]?.back);
 
   return (
     <Container maxWidth="lg">
@@ -46,7 +49,7 @@ function List() {
               Edit
             </Button>
           </Typography>
-          {list.length > 0 && (
+          {list && list.length > 0 && (
             <Box>
               <Paper sx={{ minHeight: "300px", height: "auto", display: "flex" }}>
                 <Button

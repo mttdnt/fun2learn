@@ -1,5 +1,6 @@
 import { Fragment, useState } from "react";
 import { API } from "aws-amplify";
+import { GraphQLQuery } from '@aws-amplify/api';
 import Container from "@mui/material/Container";
 import {
   Box,
@@ -13,11 +14,12 @@ import {
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import FileUpload from "../../Components/FileUpload";
+import { CreateListMutation } from "../../API";
 import { createList, createCard } from "../../graphql/mutations";
 import Loader from "../../Components/Loader";
 
 function AddCSV() {
-  const [generatedList, setGeneratedList] = useState([]);
+  const [generatedList, setGeneratedList] = useState<[[string, string]] | []>([]);
   const [error, setError] = useState(false);
   const [listName, setListName] = useState("");
   const [loading, setLoading] = useState(false);
@@ -29,7 +31,7 @@ function AddCSV() {
     } else {
       setLoading(true);
       try {
-        const list = await API.graphql({
+        const list = await API.graphql<GraphQLQuery<CreateListMutation>>({
           query: createList,
           authMode: "AMAZON_COGNITO_USER_POOLS",
           variables: {
@@ -44,7 +46,7 @@ function AddCSV() {
               input: {
                 front: item[0],
                 back: item[1],
-                listId: list.data.createList.id
+                listId: list?.data?.createList?.id
               }
             }
           })

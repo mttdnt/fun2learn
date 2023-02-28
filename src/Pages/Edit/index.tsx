@@ -1,18 +1,21 @@
 import { useCallback, useEffect, useState } from "react";
 import { Link as RouterLink, useParams, useNavigate } from "react-router-dom";
+import { GraphQLQuery } from '@aws-amplify/api';
 import { API } from "aws-amplify";
 import { Typography, Container, Button, Box, List, ListItem, Modal, Divider } from "@mui/material";
+import { GetListQuery } from "../../custom-graphql/API";
 import { getList } from "../../custom-graphql/queries";
 import { deleteList, deleteCard } from "../../graphql/mutations";
 import Loader from "../../Components/Loader";
 import ListCard from "../../Components/ListCard";
+import { Card } from "../../types/amplify-types";
 
 function Edit() {
   const { id } = useParams();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
-  const [list, setList] = useState(undefined);
-  const [listName, setListName] = useState(undefined);
+  const [list, setList] = useState<Array<Card | null> | undefined>(undefined);
+  const [listName, setListName] = useState<string | null | undefined>(undefined);
   const [open, setOpen] = useState(false);
 
   const handleOpen = () => setOpen(true);
@@ -20,13 +23,13 @@ function Edit() {
 
   const getListData = useCallback(async () => {
     try {
-      const res = await API.graphql({
+      const res = await API.graphql<GraphQLQuery<GetListQuery>>({
         query: getList,
         variables: { id },
         authMode: "AMAZON_COGNITO_USER_POOLS"
       });
-      setList(res.data.getList.cards.items);
-      setListName(res.data.getList.name);
+      setList(res?.data?.getList?.cards?.items);
+      setListName(res?.data?.getList?.name);
       setLoading(false);
     } catch (e) {
       console.error(e);
@@ -41,12 +44,12 @@ function Edit() {
     try {
       handleClose();
       setLoading(true);
-      if (list.length > 0) {
+      if (list && list.length > 0) {
         const promises = list.map((item) =>
           API.graphql({
             query: deleteCard,
             authMode: "AMAZON_COGNITO_USER_POOLS",
-            variables: { input: { id: item.id } }
+            variables: { input: { id: item?.id } }
           })
         );
         await Promise.all(promises);
@@ -92,8 +95,8 @@ function Edit() {
             </Button>
           </Box>
           <List>
-            {list.map((item) => (
-              <ListItem key={item.id}>
+            {list && list.map((item) => (
+              <ListItem key={item?.id}>
                 <ListCard
                   card={item}
                   onUpdate={() => setLoading(true)}

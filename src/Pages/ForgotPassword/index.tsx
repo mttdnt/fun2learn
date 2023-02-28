@@ -11,7 +11,7 @@ function ForgotPassword() {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  const forgotPassword = async (event) => {
+  const forgotPassword = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     try {
@@ -21,7 +21,7 @@ function ForgotPassword() {
     }
   };
 
-  const creatNewPassword = async (event) => {
+  const creatNewPassword = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     try {
