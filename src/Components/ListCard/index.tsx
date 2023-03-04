@@ -9,7 +9,7 @@ interface IListCardProps {
   onUpdate: React.Dispatch<React.SetStateAction<boolean>>;
   onFinishUpdate: () => Promise<void>;
   listId?: string;
-};
+}
 
 function ListCard({ card, onUpdate, onFinishUpdate, listId }: IListCardProps) {
   const [front, setFront] = useState(card ? card.front : "");

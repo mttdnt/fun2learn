@@ -3,9 +3,9 @@ import * as Papa from "papaparse";
 import Button from "@mui/material/Button";
 
 interface IFileUploadProps {
-  setList: React.Dispatch<any>,
-  disabled: boolean,
-};
+  setList: React.Dispatch<any>;
+  disabled: boolean;
+}
 
 function FileUpload({ setList, disabled }: IFileUploadProps) {
   const onCSVParseComplete = (results: any) => {
@@ -26,7 +26,7 @@ function FileUpload({ setList, disabled }: IFileUploadProps) {
     }
   };
 
-  const fileInput = useRef<HTMLInputElement | null>(null)
+  const fileInput = useRef<HTMLInputElement | null>(null);
 
   return (
     <>
