@@ -14,6 +14,7 @@ import Edit from "./Pages/Edit";
 import AddManual from "./Pages/AddManual";
 import SignIn from "./Pages/SignIn";
 import ForgotPassword from "./Pages/ForgotPassword";
+import Quiz from "./Pages/Quiz";
 
 import awsExports from "./aws-exports";
 
@@ -54,6 +55,7 @@ function App() {
           <Route path="/add/csv" element={<AddCSV />} />
           <Route path="/list/:id" element={<List />} />
           <Route path="/edit/:id" element={<Edit />} />
+          <Route path="/quiz/:id" element={<Quiz />} />
           <Route path="add/manual" element={<AddManual />} />
         </Routes>
       </Box>

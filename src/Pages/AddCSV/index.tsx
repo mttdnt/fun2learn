@@ -60,7 +60,7 @@ function AddCSV() {
   };
 
   return (
-    <Container maxWidth="lg" sx={{ height: "100%" }}>
+    <Container maxWidth="lg" sx={{ height: "100%", mb: 6 }}>
       <Typography variant="h2" component="h1" gutterBottom align="center" mt={4}>
         Create list by CSV
       </Typography>

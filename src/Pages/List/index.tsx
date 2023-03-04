@@ -40,7 +40,11 @@ function List() {
 
   return (
     <Container maxWidth="lg">
-      {loading && <Loader />}
+      {loading && (
+        <Box mt={4}>
+          <Loader />
+        </Box>
+      )}
       {!loading && (
         <>
           <Typography variant="h2" component="h1" gutterBottom align="center" mt={4}>
@@ -63,7 +67,10 @@ function List() {
               <Grid container spacing={2} mt={2}>
                 <Grid item xs={12} md={4}>
                   <Button
-                    onClick={() => setCardIndex(cardIndex - 1)}
+                    onClick={() => {
+                      setFlipped(false);
+                      setCardIndex(cardIndex - 1);
+                    }}
                     disabled={cardIndex === 0}
                     sx={{ width: "100%" }}
                     variant="contained">
@@ -75,7 +82,10 @@ function List() {
                 </Grid>
                 <Grid item xs={12} md={4}>
                   <Button
-                    onClick={() => setCardIndex(cardIndex + 1)}
+                    onClick={() => {
+                      setFlipped(false);
+                      setCardIndex(cardIndex + 1);
+                    }}
                     disabled={cardIndex === list.length - 1}
                     sx={{ width: "100%" }}
                     variant="contained">

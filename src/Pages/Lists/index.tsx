@@ -2,7 +2,16 @@ import { Link as RouterLink } from "react-router-dom";
 import { GraphQLQuery } from "@aws-amplify/api";
 import { API } from "aws-amplify";
 import { useCallback, useEffect, useState } from "react";
-import { Button, Typography, Box, Container, Grid } from "@mui/material";
+import {
+  Button,
+  Typography,
+  Box,
+  Container,
+  Grid,
+  Card,
+  CardContent,
+  CardActions
+} from "@mui/material";
 import { listLists } from "../../graphql/queries";
 import Loader from "../../Components/Loader";
 import { ListListsQuery } from "../../API";
@@ -32,13 +41,21 @@ function Lists() {
   const buildLists = () => {
     return lists?.map((item) => (
       <Grid key={item?.id} item xs={12} md={6}>
-        <Button
-          variant="contained"
-          component={RouterLink}
-          to={`/list/${item?.id}`}
-          sx={{ width: "100%", height: "100px" }}>
-          <Typography variant="body1">{item?.name}</Typography>
-        </Button>
+        <Card variant="outlined">
+          <CardContent>
+            <Typography variant="h5" component="h2">
+              {item?.name}
+            </Typography>
+          </CardContent>
+          <CardActions>
+            <Button size="small" component={RouterLink} to={`/list/${item?.id}`}>
+              Memorize
+            </Button>
+            <Button size="small" component={RouterLink} to={`/quiz/${item?.id}`}>
+              Quiz
+            </Button>
+          </CardActions>
+        </Card>
       </Grid>
     ));
   };
@@ -57,7 +74,7 @@ function Lists() {
   };
 
   return (
-    <Container maxWidth="lg">
+    <Container maxWidth="lg" sx={{ mb: 6 }}>
       <Typography variant="h2" component="h1" gutterBottom align="center" mt={4}>
         Your Lists
       </Typography>

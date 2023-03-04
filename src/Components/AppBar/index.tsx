@@ -93,9 +93,16 @@ function SiteAppBar({ setUser }: ISiteAppBarProps) {
             sx={{ mr: 2, display: { sm: "none" } }}>
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Qwizard
-          </Typography>
+          <Box sx={{ flexGrow: 1 }}>
+            <Button
+              component={RouterLink}
+              to={"/"}
+              sx={{ my: 2, color: "white", textAlign: "left" }}>
+              <Typography variant="h6" component="div">
+                Qwizard
+              </Typography>
+            </Button>
+          </Box>
           <Box component="nav" sx={{ display: { xs: "none", sm: "flex" } }}>
             {pages.map((page) => (
               <Button

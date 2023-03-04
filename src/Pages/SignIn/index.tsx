@@ -122,7 +122,7 @@ function SignIn({ getUser, user }: ISignInProps) {
   );
 
   return (
-    <Container maxWidth="lg">
+    <Container maxWidth="lg" sx={{ mb: 6 }}>
       <Typography variant="h2" component="h1" gutterBottom align="center" mt={4}>
         Sign In
       </Typography>
