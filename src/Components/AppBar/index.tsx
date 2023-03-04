@@ -99,7 +99,7 @@ function SiteAppBar({ setUser }: ISiteAppBarProps) {
               to={"/"}
               sx={{ my: 2, color: "white", textAlign: "left" }}>
               <Typography variant="h6" component="div">
-                Qwizard
+                Qwizrd
               </Typography>
             </Button>
           </Box>
